@@ -1,5 +1,7 @@
 package ua.com.juja.study.sqlcmd;
 
+import ua.com.juja.study.sqlcmd.config.SqlCmdConfig;
+
 /**
  * Hello world!
  */
@@ -19,25 +21,25 @@ public class SqlCmd {
             if (curArg.equals(SqlCmdConfig.SHORT_ARG_USER_NAME) || curArg.equals(SqlCmdConfig.LONG_ARG_USER_NAME)) {
                 position++;
                 if (!args[position].startsWith("-"))
-                    config.setValueArgUserName(args[position]);
+                    config.setUserName(args[position]);
                 continue;
             }
             if (curArg.equals(SqlCmdConfig.SHORT_ARG_USER_PASSWORD) || curArg.equals(SqlCmdConfig.LONG_ARG_USER_PASSWORD)) {
                 position++;
                 if (!args[position].startsWith("-"))
-                    config.setValueArgUserPassword(args[position]);
+                    config.setPassword(args[position]);
                 continue;
             }
             if (curArg.equals(SqlCmdConfig.SHORT_ARG_DB_URL) || curArg.equals(SqlCmdConfig.LONG_ARG_DB_URL)) {
                 position++;
                 if (!args[position].startsWith("-"))
-                    config.setValueArgDbURL(args[position]);
+                    config.setDbUrl(args[position]);
                 continue;
             }
             if (curArg.equals(SqlCmdConfig.SHORT_ARG_DRIVER_NAME) || curArg.equals(SqlCmdConfig.LONG_ARG_DRIVER_NAME)) {
                 position++;
                 if (!args[position].startsWith("-"))
-                    config.setValueArgDriverName(args[position]);
+                    config.setDriverName(args[position]);
                 continue;
             }
 
@@ -51,22 +53,22 @@ public class SqlCmd {
         StringBuilder strError = new StringBuilder();
         boolean error = false;
 
-        if ((config.getValueArgUserName() == null) || config.getValueArgUserName().isEmpty()) {
+        if ((config.getUserName() == null) || config.getUserName().isEmpty()) {
             error = true;
             strError.append("value arg user name is incorrect;");
         }
 
-        if (config.getValueArgUserPassword() == null || config.getValueArgUserPassword().isEmpty()) {
+        if (config.getPassword() == null || config.getPassword().isEmpty()) {
             error = true;
             strError.append("value arg user password is incorrect;");
         }
 
-        if (config.getValueArgDbURL() == null || config.getValueArgDbURL().isEmpty()) {
+        if (config.getDbUrl() == null || config.getDbUrl().isEmpty()) {
             error = true;
             strError.append("value arg db url is incorrect;");
         }
 
-        if (config.getValueArgDriverName() == null || config.getValueArgDriverName().isEmpty()) {
+        if (config.getDriverName() == null || config.getDriverName().isEmpty()) {
             error = true;
             strError.append("value arg driver name is incorrect;");
         }
