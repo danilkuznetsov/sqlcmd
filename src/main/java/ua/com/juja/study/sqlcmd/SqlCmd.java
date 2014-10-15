@@ -1,14 +1,18 @@
 package ua.com.juja.study.sqlcmd;
 
 import ua.com.juja.study.sqlcmd.config.SqlCmdConfig;
+import ua.com.juja.study.sqlcmd.database.DatabaseConnection;
+import ua.com.juja.study.sqlcmd.database.mock.MockDatabaseExecutor;
 
 /**
- * Hello world!
  */
 public class SqlCmd {
     public static void main(String[] args) {
-        if (!validateCmdOption(parseCmdOption(args)))
+        SqlCmdConfig config = parseCmdOption(args);
+        if (!validateCmdOption(config))
             System.out.println("args[] is correct ");
+        else System.exit(1);
+        DatabaseConnection connection = new MockDatabaseExecutor().connectToDb(config);
     }
 
     public static SqlCmdConfig parseCmdOption(String[] args) {
