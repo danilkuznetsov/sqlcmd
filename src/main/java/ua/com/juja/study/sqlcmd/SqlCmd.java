@@ -1,11 +1,14 @@
 package ua.com.juja.study.sqlcmd;
 
+import javax.sound.midi.Soundbank;
+
 /**
  * Hello world!
  */
 public class SqlCmd {
     public static void main(String[] args) {
-        System.out.println(validateCmdOption(parseCmdOption(args)));
+        if(!validateCmdOption(parseCmdOption(args)))
+            System.out.println("args[] is correct ");
     }
 
     public static SqlCmdConfig parseCmdOption(String[] args) {
@@ -46,25 +49,33 @@ public class SqlCmd {
         return config;
     }
 
-    public static String validateCmdOption(SqlCmdConfig config) {
-        StringBuilder result = new StringBuilder();
+    public static boolean validateCmdOption(SqlCmdConfig config) {
+        StringBuilder strError = new StringBuilder();
+        boolean error = false;
 
         if ((config.getValueArgUserName() == null) || config.getValueArgUserName().isEmpty()) {
-            result.append("value arg user name is incorrect;");
+            error=true;
+            strError.append("value arg user name is incorrect;");
         }
 
         if (config.getValueArgUserPassword() == null || config.getValueArgUserPassword().isEmpty()) {
-            result.append("value arg user password is incorrect;");
+            error=true;
+            strError.append("value arg user password is incorrect;");
         }
 
         if (config.getValueArgDbURL() == null || config.getValueArgDbURL().isEmpty()) {
-            result.append("value arg db url is incorrect;");
+            error=true;
+            strError.append("value arg db url is incorrect;");
         }
 
         if (config.getValueArgDriverName() == null || config.getValueArgDriverName().isEmpty()) {
-            result.append("value arg driver name is incorrect;");
+            error=true;
+            strError.append("value arg driver name is incorrect;");
         }
 
-        return result.toString();
+        if (error)
+            System.out.println(strError.toString());
+
+        return error;
     }
 }
