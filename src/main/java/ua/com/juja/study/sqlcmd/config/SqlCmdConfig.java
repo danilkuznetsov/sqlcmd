@@ -50,5 +50,14 @@ public class SqlCmdConfig {
         return driverName;
     }
 
-
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("SqlCmdConfig{");
+        sb.append("userName='").append(userName).append('\'');
+        sb.append(", password='").append("*****").append('\'');
+        sb.append(", dbUrl='").append(dbUrl).append('\'');
+        sb.append(", driverName='").append(driverName).append('\'');
+        sb.append('}');
+        return sb.toString();
+    }
 }
