@@ -10,5 +10,7 @@ import ua.com.juja.study.sqlcmd.config.SqlCmdConfig;
  */
 public interface DatabaseExecutor {
 
-    public abstract DatabaseConnection connectToDb(SqlCmdConfig config);
+    public abstract boolean connectToDb(SqlCmdConfig config);
+
+    public abstract Row[] executeSqlScript(String sqlScript);
 }
