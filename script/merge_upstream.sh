@@ -32,7 +32,7 @@ if [ -n "$upstream_remote_exists" ] && [ ! "$upstream_remote_exists" == '' ]; th
  echo "* Upstream remote branch exists ....."
 else
  echo "* Adding upstream remote branch"
- git remote add upstream https://github.com/interview-com-ua/website.git
+ git remote add upstream https://github.com/vkuchyn/sqlcmd.git 
 fi
 
 echo "* Fetching from upstream "
@@ -42,7 +42,7 @@ git checkout master
 echo "* Merge local master and upstream/master"
 git merge upstream/master || rollback $?
 echo "* Push  changes into  remote  origin/master"
-git push origin
+git push origin master
 
 unstash
 read -rp "* Done. Press any key to continue..." key  
