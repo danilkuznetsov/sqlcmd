@@ -1,8 +1,6 @@
 package ua.com.juja.study.sqlcmd;
 
 import ua.com.juja.study.sqlcmd.config.SqlCmdConfig;
-import ua.com.juja.study.sqlcmd.database.DatabaseConnection;
-import ua.com.juja.study.sqlcmd.database.mock.MockDatabaseExecutor;
 
 /**
  */
@@ -12,7 +10,6 @@ public class SqlCmd {
         if (!validateCmdOption(config))
             System.out.println("args[] is correct ");
         else System.exit(1);
-        DatabaseConnection connection = new MockDatabaseExecutor().connectToDb(config);
     }
 
     public static SqlCmdConfig parseCmdOption(String[] args) {
