@@ -20,7 +20,7 @@ public class MockDatabaseExecutor implements DatabaseExecutor {
 
     @Override
     public Row[] executeSqlScript(String sqlScript) {
-        throw new UnsupportedOperationException("Not implemented");
+        return new Row[]{};
     }
 
     @Override
