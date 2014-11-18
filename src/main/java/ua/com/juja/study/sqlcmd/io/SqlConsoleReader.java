@@ -18,6 +18,8 @@ public class SqlConsoleReader {
     public static final int BACKSPACE = 127;
     public static final int LEFT = 2;
     public static final int RIGHT = 6;
+    public static final int END = 5;
+    public static final int HOME = 1;
     private ConsoleReader consoleReader;
     private Writer writer;
     private CursorBuffer cursorBuffer;
@@ -53,12 +55,14 @@ public class SqlConsoleReader {
                 case RIGHT:
                     consoleReader.moveCursor(1);
                     break;
-                case 5:
+                case END:
                     moveToEnd();
                     break;
-                case 1:
+                case HOME:
                     moveToBegin();
                     break;
+                case 98:
+
                 default:
                     cursorBuffer.write((char) key);
                     writer.write(key);
