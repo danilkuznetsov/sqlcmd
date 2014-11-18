@@ -16,6 +16,8 @@ public class SqlConsoleReader {
     public static final int SEMICOLON = 59;
     public static final int NEW_LINE = 10;
     public static final int BACKSPACE = 127;
+    public static final int LEFT = 2;
+    public static final int RIGHT = 6;
     private ConsoleReader consoleReader;
     private Writer writer;
     private CursorBuffer cursorBuffer;
@@ -45,11 +47,17 @@ public class SqlConsoleReader {
                 case BACKSPACE:
                     consoleReader.backspace();
                     break;
-                case 2:
+                case LEFT:
                     consoleReader.moveCursor(-1);
                     break;
-                case 6:
+                case RIGHT:
                     consoleReader.moveCursor(1);
+                    break;
+                case 5:
+                    moveToEnd();
+                    break;
+                case 1:
+                    moveToBegin();
                     break;
                 default:
                     cursorBuffer.write((char) key);
@@ -59,6 +67,14 @@ public class SqlConsoleReader {
             consoleReader.flushConsole();
         }
         return sb.toString();
+    }
+
+    private void moveToBegin() throws IOException {
+        consoleReader.moveCursor(-cursorBuffer.length());
+    }
+
+    private void moveToEnd() throws IOException {
+        consoleReader.moveCursor(cursorBuffer.length() - cursorBuffer.cursor);
     }
 
     private void newLine() throws IOException {
