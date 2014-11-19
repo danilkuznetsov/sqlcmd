@@ -47,6 +47,11 @@ public class KeyboardManager {
 
     public Row[] executeQuery(String query) {
         history.addQueryToTheHead(query);
-        return databaseExecutor.executeSqlScript(query);
+        try {
+            return databaseExecutor.executeSqlScript(query);
+        } catch (Exception e) {
+            System.out.println("Got exception when execute script " + e.getMessage());
+            return new Row[]{};
+        }
     }
 }

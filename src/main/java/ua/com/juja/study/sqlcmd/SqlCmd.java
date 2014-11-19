@@ -1,15 +1,22 @@
 package ua.com.juja.study.sqlcmd;
 
 import ua.com.juja.study.sqlcmd.config.SqlCmdConfig;
+import ua.com.juja.study.sqlcmd.config.ValidationException;
+
+import static ua.com.juja.study.sqlcmd.config.SqlCmdConfigValidator.validateCmdOption;
 
 /**
  */
 public class SqlCmd {
     public static void main(String[] args) {
         SqlCmdConfig config = parseCmdOption(args);
-        if (!validateCmdOption(config))
-            System.out.println("args[] is correct ");
-        else System.exit(1);
+        try {
+            validateCmdOption(config);
+        } catch (ValidationException e) {
+            System.err.println("Invalid initial parameters. Unable to continue working");
+            System.err.println(e.getMessage());
+            System.exit(1);
+        }
     }
 
     public static SqlCmdConfig parseCmdOption(String[] args) {
@@ -50,33 +57,4 @@ public class SqlCmd {
         return config;
     }
 
-    public static boolean validateCmdOption(SqlCmdConfig config) {
-        StringBuilder strError = new StringBuilder();
-        boolean error = false;
-
-        if ((config.getUserName() == null) || config.getUserName().isEmpty()) {
-            error = true;
-            strError.append("value arg user name is incorrect;");
-        }
-
-        if (config.getPassword() == null || config.getPassword().isEmpty()) {
-            error = true;
-            strError.append("value arg user password is incorrect;");
-        }
-
-        if (config.getDbUrl() == null || config.getDbUrl().isEmpty()) {
-            error = true;
-            strError.append("value arg db url is incorrect;");
-        }
-
-        if (config.getDriverName() == null || config.getDriverName().isEmpty()) {
-            error = true;
-            strError.append("value arg driver name is incorrect;");
-        }
-
-        if (error)
-            System.out.println(strError.toString());
-
-        return error;
-    }
 }

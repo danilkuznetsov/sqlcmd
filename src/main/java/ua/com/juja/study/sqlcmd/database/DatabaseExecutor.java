@@ -10,11 +10,11 @@ import ua.com.juja.study.sqlcmd.config.SqlCmdConfig;
  */
 public interface DatabaseExecutor {
 
-    public abstract boolean connectToDb(SqlCmdConfig config);
+    public abstract boolean connectToDb(SqlCmdConfig config) throws DatabaseException;
 
-    public abstract Row[] executeSqlScript(String sqlScript);
+    public abstract Row[] executeSqlScript(String sqlScript) throws DatabaseException;
 
-    public abstract String[] getDatabaseList();
+    public abstract String[] getDatabaseList() throws DatabaseException;
 
-    public abstract void changeDatabase(String databaseName);
+    public abstract void changeDatabase(String databaseName) throws DatabaseException;
 }
