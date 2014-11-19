@@ -5,6 +5,8 @@ import jline.CursorBuffer;
 
 import java.io.*;
 
+import static ua.com.juja.study.sqlcmd.io.KeyCodes.*;
+
 /**
  * Created with IntelliJ IDEA.
  * User: viktor
@@ -13,13 +15,6 @@ import java.io.*;
  */
 public class SqlConsoleReader {
 
-    public static final int SEMICOLON = 59;
-    public static final int NEW_LINE = 10;
-    public static final int BACKSPACE = 127;
-    public static final int LEFT = 2;
-    public static final int RIGHT = 6;
-    public static final int END = 5;
-    public static final int HOME = 1;
     private ConsoleReader consoleReader;
     private Writer writer;
     private CursorBuffer cursorBuffer;
@@ -37,7 +32,7 @@ public class SqlConsoleReader {
         while (!exit) {
             int key = consoleReader.readVirtualKey();
             switch (key) {
-                case NEW_LINE:
+                case KeyCodes.NEW_LINE:
                     sb.append(cursorBuffer.toString());
                     if (previousKey == SEMICOLON) {
                         exit = true;
@@ -58,7 +53,7 @@ public class SqlConsoleReader {
                 case END:
                     moveToEnd();
                     break;
-                case HOME:
+                case KeyCodes.HOME:
                     moveToBegin();
                     break;
                 case 98:
