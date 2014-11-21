@@ -4,8 +4,6 @@ import ua.com.juja.study.sqlcmd.database.DatabaseExecutor;
 import ua.com.juja.study.sqlcmd.engine.KeyboardManager;
 import ua.com.juja.study.sqlcmd.sql.QueryHistory;
 
-import java.util.concurrent.ExecutorService;
-
 /**
  * Created with IntelliJ IDEA.
  * User: viktor
@@ -19,8 +17,4 @@ public interface ApplicationContext {
     public DatabaseExecutor getDatabaseExecutor();
 
     public KeyboardManager getKeyboardManager();
-
-    public ExecutorService getExecutorService();
-
-    public void shutdown();
 }
