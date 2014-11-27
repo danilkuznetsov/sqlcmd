@@ -12,6 +12,7 @@ import java.util.concurrent.Future;
 public class QueryResult {
     private Row[] rowList;
     private Future<Row[]> futureRowList;
+    private String[] columnNames;
 
     public QueryResult(Row[] rowList) {
         this.rowList = rowList;
@@ -37,5 +38,13 @@ public class QueryResult {
             return true;
         }
         return futureRowList.isDone();
+    }
+
+    public String[] getColumnNames() {
+        return columnNames;
+    }
+
+    public void setColumnNames(String[] columnNames) {
+        this.columnNames = columnNames;
     }
 }
