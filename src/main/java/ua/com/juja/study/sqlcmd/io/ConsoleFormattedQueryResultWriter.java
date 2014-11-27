@@ -1,6 +1,5 @@
 package ua.com.juja.study.sqlcmd.io;
 
-import ua.com.juja.study.sqlcmd.SqlCmd;
 import ua.com.juja.study.sqlcmd.database.QueryResult;
 import ua.com.juja.study.sqlcmd.di.ApplicationContext;
 import ua.com.juja.study.sqlcmd.engine.QueryFormatter;
@@ -27,6 +26,7 @@ public class ConsoleFormattedQueryResultWriter implements ResultWriter {
 
     private QueryFormatter queryFormatter = new QueryFormatter();
     private Writer writer;
+    private ApplicationContext applicationContext;
 
     public ConsoleFormattedQueryResultWriter() {
         writer = new BufferedWriter(new OutputStreamWriter(System.out));
@@ -47,11 +47,11 @@ public class ConsoleFormattedQueryResultWriter implements ResultWriter {
 
     private void writeQueryResultSync(QueryResult queryResult) throws IOException {
         writer.write(queryFormatter.formatQueryResult(queryResult));
+        writer.flush();
     }
 
     private void writeQueryResultAsync(final QueryResult queryResult) {
-        ApplicationContext context = SqlCmd.getApplicationContext();
-        ExecutorService executorService = context.getExecutorService();
+        ExecutorService executorService = applicationContext.getExecutorService();
         executorService.submit(new Callable() {
             @Override
             public Object call() throws IOException {
@@ -61,5 +61,7 @@ public class ConsoleFormattedQueryResultWriter implements ResultWriter {
         });
     }
 
-
+    public void setApplicationContext(ApplicationContext applicationContext) {
+        this.applicationContext = applicationContext;
+    }
 }
