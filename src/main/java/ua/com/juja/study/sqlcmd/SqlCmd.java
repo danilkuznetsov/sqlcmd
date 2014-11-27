@@ -33,6 +33,8 @@ public class SqlCmd {
             System.err.println("Error with input/output happened. Unable to continue working");
             System.err.println(e.getMessage());
             System.exit(1);
+        } finally {
+            applicationContext.shutdown();
         }
     }
 

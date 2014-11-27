@@ -1,5 +1,7 @@
 package ua.com.juja.study.sqlcmd.database;
 
+import ua.com.juja.study.sqlcmd.config.SqlCmdConfig;
+
 /**
  * Created with IntelliJ IDEA.
  * User: viktor
@@ -7,6 +9,8 @@ package ua.com.juja.study.sqlcmd.database;
  * Time: 11:39 PM
  */
 public interface DatabaseExecutor {
+
+    public abstract boolean connectToDb(SqlCmdConfig config) throws DatabaseException;
 
     public abstract QueryResult executeSqlScript(String sqlScript) throws DatabaseException;
 
