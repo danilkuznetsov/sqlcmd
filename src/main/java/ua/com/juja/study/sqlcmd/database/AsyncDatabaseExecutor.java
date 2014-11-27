@@ -17,7 +17,6 @@ import java.util.concurrent.Future;
 public class AsyncDatabaseExecutor implements DatabaseExecutor {
 
     private DatabaseExecutor executor;
-    private ApplicationContext applicationContext = SqlCmd.getApplicationContext();
 
     public AsyncDatabaseExecutor(DatabaseExecutor executor) {
         this.executor = executor;
@@ -30,6 +29,7 @@ public class AsyncDatabaseExecutor implements DatabaseExecutor {
 
     @Override
     public QueryResult executeSqlScript(final String sqlScript) throws DatabaseException {
+        ApplicationContext applicationContext = SqlCmd.getApplicationContext();
         ExecutorService executorService = applicationContext.getExecutorService();
         Future<Row[]> queryResult = executorService.submit(new Callable<Row[]>() {
             @Override
