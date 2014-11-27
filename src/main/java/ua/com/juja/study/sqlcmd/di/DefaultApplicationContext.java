@@ -27,10 +27,10 @@ public class DefaultApplicationContext implements ApplicationContext {
 
     public DefaultApplicationContext(SqlCmdConfig config) {
         this.config = config;
+        executorService = Executors.newFixedThreadPool(5);
         databaseExecutor = new AsyncDatabaseExecutor(new MockDatabaseExecutor());
         queryHistory = new ArrayQueryHistory();
         keyboardManager = new KeyboardManager(queryHistory, databaseExecutor);
-        executorService = Executors.newFixedThreadPool(5);
     }
 
     @Override
