@@ -7,6 +7,8 @@ import ua.com.juja.study.sqlcmd.engine.KeyboardManager;
 import ua.com.juja.study.sqlcmd.sql.ArrayQueryHistory;
 import ua.com.juja.study.sqlcmd.sql.QueryHistory;
 
+import java.util.concurrent.ExecutorService;
+
 /**
  * Created with IntelliJ IDEA.
  * User: viktor
@@ -40,5 +42,15 @@ public class DefaultApplicationContext implements ApplicationContext {
     @Override
     public KeyboardManager getKeyboardManager() {
         return keyboardManager;
+    }
+
+    @Override
+    public ExecutorService getExecutorService() {
+        throw new UnsupportedOperationException("Not implemented");
+    }
+
+    @Override
+    public void shutdown() {
+        throw new UnsupportedOperationException("Not implemented");
     }
 }
