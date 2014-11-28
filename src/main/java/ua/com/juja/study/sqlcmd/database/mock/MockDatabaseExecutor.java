@@ -2,6 +2,7 @@ package ua.com.juja.study.sqlcmd.database.mock;
 
 import ua.com.juja.study.sqlcmd.config.SqlCmdConfig;
 import ua.com.juja.study.sqlcmd.database.DatabaseExecutor;
+import ua.com.juja.study.sqlcmd.database.QueryResult;
 import ua.com.juja.study.sqlcmd.database.Row;
 
 /**
@@ -19,8 +20,8 @@ public class MockDatabaseExecutor implements DatabaseExecutor {
     }
 
     @Override
-    public Row[] executeSqlScript(String sqlScript) {
-        return new Row[]{};
+    public QueryResult executeSqlScript(String sqlScript) {
+        return new QueryResult(new Row[]{});
     }
 
     @Override
