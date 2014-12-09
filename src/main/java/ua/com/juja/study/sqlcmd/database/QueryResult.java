@@ -44,7 +44,7 @@ public class QueryResult {
         return columnNames;
     }
 
-    public void setColumnNames(String[] columnNames) {
+    public void setColumnNames(String... columnNames) {
         this.columnNames = columnNames;
     }
 }
