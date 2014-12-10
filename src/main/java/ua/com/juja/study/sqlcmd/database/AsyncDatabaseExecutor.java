@@ -1,7 +1,6 @@
 package ua.com.juja.study.sqlcmd.database;
 
 import ua.com.juja.study.sqlcmd.SqlCmd;
-import ua.com.juja.study.sqlcmd.config.SqlCmdConfig;
 import ua.com.juja.study.sqlcmd.di.ApplicationContext;
 
 import java.util.concurrent.Callable;
@@ -20,11 +19,6 @@ public class AsyncDatabaseExecutor implements DatabaseExecutor {
 
     public AsyncDatabaseExecutor(DatabaseExecutor executor) {
         this.executor = executor;
-    }
-
-    @Override
-    public boolean connectToDb(SqlCmdConfig config) throws DatabaseException {
-        return executor.connectToDb(config);
     }
 
     @Override
